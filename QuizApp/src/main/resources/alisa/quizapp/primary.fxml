@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="337.0" styleClass="Main" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alisa.quizapp.PrimaryController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Title" text="QUIZZ APP" />
+      <Button mnemonicParsing="false" onAction="#handleQuestionManagement" styleClass="Button" text="Manage" />
+      <Button mnemonicParsing="false" onAction="#handleTest" styleClass="Button" text="Test" />
+      <Button mnemonicParsing="false" styleClass="Button" text="Retest" />
+   </children>
+</VBox>
