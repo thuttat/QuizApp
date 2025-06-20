@@ -4,10 +4,28 @@
  */
 package com.alisa.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  *
  * @author admin
  */
+@Getter
+@Setter
 public class Categories {
-    
+
+    private int id;
+    private String name;
+
+    public Categories(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return this.name; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
 }
