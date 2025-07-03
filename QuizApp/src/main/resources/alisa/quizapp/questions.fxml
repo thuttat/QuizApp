@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="783.0" styleClass="Main" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alisa.quizapp.QuestionsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="783.0" styleClass="Main" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alisa.quizapp.QuestionsController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Title" text="Question Management">
          <font>
@@ -21,7 +21,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="Main">
          <children>
             <ComboBox fx:id="cbCates" prefHeight="65.0" prefWidth="247.0" promptText="Categories" />
-            <ComboBox layoutX="10.0" layoutY="10.0" prefHeight="65.0" prefWidth="223.0" promptText="Ranking" />
+            <ComboBox layoutX="10.0" layoutY="10.0" onAction="#addChoice" prefHeight="65.0" prefWidth="223.0" promptText="Ranking" />
          </children>
       </HBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="Main">

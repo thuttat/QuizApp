@@ -1,23 +1,37 @@
 package alisa.quizapp;
 
 import com.alisa.utils.MyAlert;
+import com.alisa.utils.MyStage;
+import com.alisa.utils.theme.Theme;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable {
+
+    @FXML
+    ComboBox<Theme> cbTheme;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        this.cbTheme.setItems(FXCollections.observableArrayList(Theme.values())); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
+
+    @FXML
+    public void handleTheme(ActionEvent event) throws IOException {
+        this.cbTheme.getSelectionModel().getSelectedItem().updateTheme(this.cbTheme.getScene());
+    }
 
     @FXML
     public void handleQuestionManagement(ActionEvent event) throws IOException {
-        Scene scene = new Scene(new FXMLLoader(App.class.getResource("questions.fxml")).load());
-
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Quiz App");
-        stage.show();
+        MyStage.getInstance().showStage("questions.fxml");
     }
 
     public void handleTest(ActionEvent event) {
@@ -43,4 +57,5 @@ public class PrimaryController {
     public void handleLogin(ActionEvent event) {
         MyAlert.getInstance().showMsg("Comming soon...");
     }
+
 }

@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -36,6 +37,9 @@ public class QuestionsController implements Initializable {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    public void addChoice(ActionEvent event){
+        
     }
 
 }
