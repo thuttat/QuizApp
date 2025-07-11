@@ -4,27 +4,31 @@
  */
 package com.alisa.pojo;
 
-
 /**
  *
- * @author admin
+ * @author Tran Phuong Uyen
  */
-
-public class Categories {
-
+public class Level {
     private int id;
     private String name;
+    private String note;
 
-    public Categories(int id, String name) {
+    public Level(int id, String name, String note) {
         this.id = id;
         this.name = name;
+        this.note = note;
+    }
+    public Level(String name, String note) {
+        this.name = name;
+        this.note = note;
     }
 
     @Override
     public String toString() {
-        return this.getName(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return this.name; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
+    
     /**
      * @return the id
      */
@@ -53,4 +57,18 @@ public class Categories {
         this.name = name;
     }
 
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+    
 }
