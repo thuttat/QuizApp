@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alisa.quizapp.PracticeController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Title" text="PRACTICING" />
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="Main">
+         <children>
+            <TextField fx:id="txtNum" promptText="The quantity of question" />
+            <Button mnemonicParsing="false" onAction="#handleStart" text="Start" />
+         </children>
+      </HBox>
+      <Text fx:id="txtContent" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <VBox fx:id="vboxChoices" prefHeight="200.0" prefWidth="100.0" />
+      <Text fx:id="txtResult" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="Main">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleCheck" styleClass="Button" text="Check" />
+            <Button mnemonicParsing="false" onAction="#handleNext" styleClass="Button" text="&gt;&gt;" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

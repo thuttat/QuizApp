@@ -9,13 +9,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .Main{
     -fx-background-color: #E0F7FA;
-    -fx-font-size: 30;
     -fx-padding: 10; 
     -fx-spacing:10;
     -fx-alignment: CENTER;
 }
 .Title{
-    
+    -fx-font-size: 40;
     -fx-fill: #FCF9BE;
     -fx-font-weight:bold;
     -fx-stroke: #000000;

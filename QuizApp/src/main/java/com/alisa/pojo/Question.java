@@ -43,12 +43,17 @@ public class Question {
         private List<Choice> choices = new ArrayList<>();
 
         public Builder(String c, Categories ca, Level l) throws Exception {
-            if(c.isEmpty()||ca==null||l==null){
+            if (c.isEmpty() || ca == null || l == null) {
                 throw new Exception("troi oi");
             }
             this.content = c;
             this.categories = ca;
             this.level = l;
+        }
+
+        public Builder(int id, String c) {
+            this.id = id;
+            this.content = c;
         }
 
         public Builder addHint(String h) {
@@ -65,7 +70,13 @@ public class Question {
             this.choices.add(c);
             return this;
         }
-        public Question build(){
+
+        public Builder addAllChoice(List<Choice> choices) {
+            this.choices.addAll(choices);
+            return this;
+        }
+
+        public Question build() {
             return new Question(this);
         }
     }

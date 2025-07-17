@@ -11,6 +11,7 @@ import com.alisa.pojo.Question;
 import com.alisa.services.CategoriesServices;
 import com.alisa.services.LevelServices;
 import com.alisa.services.QuestionServices;
+import com.alisa.utils.Config;
 import com.alisa.utils.MyAlert;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,9 +23,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -45,10 +49,11 @@ public class QuestionsController implements Initializable {
     private TextArea txtContent;
     @FXML
     private ToggleGroup toggleChoice;
+    @FXML
+    private TableView<Question> tbQuestion;
+    @FXML
+    private TextField txtSearch;
 
-    private static final CategoriesServices cateServices = new CategoriesServices();
-    private static final LevelServices levelServices = new LevelServices();
-    private static final QuestionServices questionServices = new QuestionServices();
 
     /**
      * Initializes the controller class.
@@ -56,11 +61,21 @@ public class QuestionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            this.cbCates.setItems(FXCollections.observableList(cateServices.getCates()));
-            this.cbLevels.setItems(FXCollections.observableList(levelServices.getLevels()));
+            this.cbCates.setItems(FXCollections.observableList(Config.cateServices.getCates()));
+            this.cbLevels.setItems(FXCollections.observableList(Config.levelServices.getLevels()));
+            this.loadColums();
+            this.tbQuestion.setItems(FXCollections.observableList(Config.questionServices.getQuestions()));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        this.txtSearch.textProperty().addListener(e -> {
+            try {
+                this.tbQuestion.getItems().clear();
+                this.tbQuestion.setItems(FXCollections.observableList(Config.questionServices.getQuestions(this.txtSearch.getText())));
+            } catch (SQLException ex) {
+                Logger.getLogger(QuestionsController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        });
     }
 
     public void addChoice(ActionEvent event) {
@@ -82,22 +97,34 @@ public class QuestionsController implements Initializable {
             Question.Builder b = new Question.Builder(this.txtContent.getText(),
                     this.cbCates.getSelectionModel().getSelectedItem(),
                     this.cbLevels.getSelectionModel().getSelectedItem());
-            
-            for(var c: this.vboxChoice.getChildren()){
-                HBox h= (HBox) c;
-                
-                Choice choice = new Choice(((TextField)h.getChildren().get(1)).getText(),((RadioButton)h.getChildren().get(0)).isSelected());
-                
+
+            for (var c : this.vboxChoice.getChildren()) {
+                HBox h = (HBox) c;
+
+                Choice choice = new Choice(((TextField) h.getChildren().get(1)).getText(), ((RadioButton) h.getChildren().get(0)).isSelected());
+
                 b.addChoice(choice);
-                
+
             }
-            
-            questionServices.addQuestion(b.build());
+
+            Config.questionServices.addQuestion(b.build());
             MyAlert.getInstance().showMsg("Success");
-        } catch (SQLException ex){
-            MyAlert.getInstance().showMsg("can not adding, cause "+ex.getMessage());
-        }catch (Exception ex) {
+        } catch (SQLException ex) {
+            MyAlert.getInstance().showMsg("can not adding, cause " + ex.getMessage());
+        } catch (Exception ex) {
             MyAlert.getInstance().showMsg(":((!");
         }
+    }
+
+    private void loadColums() {
+        TableColumn colId = new TableColumn("id");
+        colId.setCellValueFactory(new PropertyValueFactory("id"));
+        colId.setPrefWidth(100);
+        TableColumn colContent = new TableColumn("content");
+        colContent.setCellValueFactory(new PropertyValueFactory("content"));
+        colContent.setPrefWidth(250);
+
+        this.tbQuestion.getColumns().addAll(colId, colContent);
+
     }
 }
